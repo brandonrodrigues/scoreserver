@@ -17,9 +17,9 @@ const io = require('socket.io')(http);
 
         socket.on('update', (data) => {
             let ts = new Date();
-            socket.broadcast.emit('news', { gameScore: score, player: player, playerScore: playerScore, gameNum: data.gameNum, btnClicked: data.clicked })
+            socket.broadcast.emit('news', { gameCount: data.gameCount, player: player, playerScore: playerScore, gameNum: data.gameNum, btnClicked: data.clicked })
             emitCount++;
-            console.log(`${ts.toLocaleDateString()} ${ts.toLocaleTimeString()}: Emit(${emitCount}) - ${data.clicked} - ${data.gameTitle}`);
+            console.log(`${ts.toLocaleDateString()} ${ts.toLocaleTimeString()}: Emit(${emitCount}) - ${data.clicked} - ${data.gameTitle} ${data.gameCount}`);
             if (data.clicked === 'submit') {
                 console.log(`${ts.toLocaleDateString()} ${ts.toLocaleTimeString()}: Score submitted - ${data.gameTitle}`)
             }
